@@ -59,7 +59,7 @@ public class BleUrineRoutineActivity extends BaseActivity {
     private UrineDetail detail;//测量到的数据
     private final int REQUEST_CAMERA = 1000;
     private String timeTemp;
-    private String userName;//上传到尿大夫后台的用户名
+    private String userName = "bleSDKUser";//上传到尿大夫后台的用户名
     private String cameraPath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +
             Environment.DIRECTORY_DCIM + File.separator + "Camera" + File.separator;
 
@@ -115,7 +115,7 @@ public class BleUrineRoutineActivity extends BaseActivity {
         FormBody formBody = new FormBody
                 .Builder()
                 // 任何字符串 但若调取的模式为无感知绑定模式，所传参数userbind须为手机号
-                .add("userbind", (userName == null || userName.isEmpty()) ? "user": userName)
+                .add("userbind", (userName == null || userName.isEmpty()) ? "bleSDKUser": userName)
                 .add("appkey",BleUrineRoutinUtils.appKey)
                 .add("sign", BleUrineRoutinUtils.getSign(time))
                 .add("atime", time + "")
@@ -201,7 +201,7 @@ public class BleUrineRoutineActivity extends BaseActivity {
         public boolean handleMessage(Message msg) {
             if(msg.what == 0){
                 takePhoto();
-//                File file = new File(cameraPath+ "1559033610626.png");
+//                File file = new File(cameraPath+ "1559037608875.png");
 //                uploadImg(file);
             }else if(msg.what == 1){
                 ToastUtils.initToast((String) msg.obj);
