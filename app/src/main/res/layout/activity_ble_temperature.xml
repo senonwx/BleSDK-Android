@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="200dp"
+    android:layout_marginRight="200dp"
+    >
+
+    <com.zhouwei.mzbanner.MZBannerView
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view1"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="6dp"
+        app:canLoop="true"
+        app:indicatorAlign="center"
+        app:indicatorPaddingBottom="35dp"
+        app:open_mz_mode="false" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/layout1"
+        android:background="@color/common_button_gray" />
+
+    <RelativeLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <RelativeLayout
+            android:onClick="连接蓝牙"
+            android:layout_centerVertical="true"
+            android:id="@+id/connet_lay"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:src="@mipmap/circle_background"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+            <ImageView
+                android:layout_centerInParent="true"
+                android:src="@mipmap/access"
+                android:layout_width="28dp"
+                android:layout_height="28dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/connetstatus_tv"
+            android:layout_toRightOf="@+id/connet_lay"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="体温枪未连接"
+            android:textColor="@color/login_"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/descripte_tv"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/connetstatus_tv"
+            android:layout_toRightOf="@+id/connet_lay"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="点击左侧按钮，连接设备!"
+            android:textColor="@color/common_checkbox_gray"
+            android:textSize="14dp" />
+
+
+        <TextView
+            android:onClick="绑定设备"
+            android:id="@+id/bind_tv"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/common_cor6_stroke1_blue_solidblue"
+            android:text="绑定设备"
+            android:textColor="@color/common_white"
+            android:textSize="16dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="common_login_bg">#55bfb9b9</color>
+
+
+    <color name="login_">#22A59E</color>
+    <color name="common_stroke_blue">#6EBEBA</color>
+    <color name="follow_red">#EC827A</color>
+    <color name="follow_blue">#33A0F7</color>
+    <color name="common_bg_blue">#D1EBE9</color>
+    <color name="common_white">#FFFFFF</color>
+    <color name="common_black">#000000</color>
+    <color name="common_textblack">#0A1111</color>
+    <color name="common_text_gary">#393C3C</color>
+    <color name="common_checkbox_gray">#656565</color>
+    <color name="common_button_gray">#D9D9D9</color>
+    <color name="common_button_red">#F89393</color>
+    <color name="common_line_gray">#ACABAB</color>
+    <color name="common_text_gray2">#ECECEC</color>
+    <color name="urine_text_red">#F74B3E</color>
+    <color name="urine_text_blue">#0C90F8</color>
+    <color name="resident_textbg_gray">#B2B2B2</color>
+    <color name="offline_tips_yellow">#FF9A0A</color>
+
+</resources>

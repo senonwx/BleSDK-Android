@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:layout_below="@+id/textview_xingbie"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="34dp"
+            android:background="@drawable/common_stroke05_gray"
+            android:gravity="center"
+            android:text="项目名称"
+            android:textColor="@color/common_text_gary"
+            android:textSize="14dp" />
+
+        <TextView
+            android:textStyle="bold"
+            android:digits="0123456789xX"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="34dp"
+            android:layout_marginLeft="-0.5dp"
+            android:background="@drawable/common_stroke05_gray"
+            android:gravity="center"
+            android:text="单位"
+            android:singleLine="true"
+            android:textColor="@color/common_text_gary"
+            android:textSize="14dp" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginLeft="-0.5dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="34dp"
+            android:background="@drawable/common_stroke05_gray"
+            android:gravity="center"
+            android:text="结果"
+            android:textColor="@color/common_text_gary"
+            android:textSize="14dp" />
+
+        <TextView
+            android:layout_marginLeft="-0.5dp"
+            android:textStyle="bold"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="34dp"
+            android:background="@drawable/common_stroke05_gray"
+            android:gravity="center"
+            android:text="参考范围"
+            android:textColor="@color/common_text_gary"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="-0.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_below="@+id/textview_xingbie"
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="34dp"
+            android:background="@drawable/common_stroke05_gray"
+            android:gravity="center"
+            android:text="项目名称"
+            android:textColor="@color/common_checkbox_gray"
+            android:textSize="14dp" />
+
+        <TextView
+            android:digits="0123456789xX"
+            android:id="@+id/unit"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="34dp"
+            android:layout_marginLeft="-0.5dp"
+            android:background="@drawable/common_stroke05_gray"
+            android:gravity="center"
+            android:text="单位"
+            android:singleLine="true"
+            android:textColor="@color/common_checkbox_gray"
+            android:textSize="14dp" />
+
+        <TextView
+            android:layout_marginLeft="-0.5dp"
+            android:id="@+id/result"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="34dp"
+            android:background="@drawable/common_stroke05_gray"
+            android:gravity="center"
+            android:text="结果"
+            android:textColor="@color/common_checkbox_gray"
+            android:textSize="14dp" />
+
+        <TextView
+            android:layout_marginLeft="-0.5dp"
+            android:id="@+id/around"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="34dp"
+            android:background="@drawable/common_stroke05_gray"
+            android:gravity="center"
+            android:text="参考范围"
+            android:textColor="@color/common_checkbox_gray"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="结果分析"
+            android:textColor="@color/urine_text_blue"
+            android:textSize="18dp" />
+        <TextView
+            android:lineSpacingMultiplier="1.2"
+            android:id="@+id/reason_tv"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="原因"
+            android:textColor="@color/common_checkbox_gray"
+            android:textSize="15dp" />
+        <TextView
+            android:layout_marginTop="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="专家建议"
+            android:textColor="@color/urine_text_blue"
+            android:textSize="18dp" />
+        <TextView
+            android:lineSpacingMultiplier="1.2"
+            android:id="@+id/advice_tv"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="建议"
+            android:textColor="@color/common_checkbox_gray"
+            android:textSize="15dp" />
+    </LinearLayout>
+</LinearLayout>
