@@ -115,10 +115,6 @@ public class HexUtils {
         return (byte) "0123456789ABCDEF".indexOf(c);
     }
 
-    public static String extractData(byte[] data, int position) {
-        return com.clj.fastble.utils.HexUtil.formatHexString(new byte[]{data[position]});
-    }
-
     //byte 取8位
     public static int getBit(byte byData,int index) {
         if(index == 0) {

@@ -1,7 +1,6 @@
 package com.txwk.totalblesdk_android.bean;
 
 /**
- * 尿大夫
  * 绑定用户获取usertoken
  */
 public class UrineIsBind {

@@ -167,7 +167,12 @@ public class BleWeightActivity extends BaseActivity {
         });
     }
 
-    //开始接收蓝牙通知
+    /**
+     * 开始接收蓝牙通知
+     * @param bleDevice
+     * @param uuid_service
+     * @param uuid_characteristic_notify
+     */
     private void bleIndicate(BleDevice bleDevice, String uuid_service, String uuid_characteristic_notify){
         BleManager.getInstance().indicate(
                 bleDevice,
@@ -193,7 +198,10 @@ public class BleWeightActivity extends BaseActivity {
                 });
     }
 
-    //解析体重值
+    /**
+     * 解析体重值
+     * @param formatHexString
+     */
     private void analysisData(String formatHexString) {
         String[] strings = formatHexString.split(" ");
         LogUtils.e(formatHexString);

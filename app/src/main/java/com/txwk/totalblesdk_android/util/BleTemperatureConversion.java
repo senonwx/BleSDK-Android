@@ -1,6 +1,5 @@
 package com.txwk.totalblesdk_android.util;
 
-import com.clj.fastble.utils.HexUtil;
 import java.util.List;
 
 /**
@@ -10,8 +9,8 @@ public class BleTemperatureConversion {
 
     //验证 16进制string byte中的第5、6位是否为 00：体温
     public static boolean isBodyTemp(String data1){
-        int indexSix = HexUtils.getBit(HexUtil.hexStringToBytes(data1)[0],6);
-        int indexFive = HexUtils.getBit(HexUtil.hexStringToBytes(data1)[0],5);
+        int indexSix = HexUtils.getBit(HexUtils.hexStringToBytes(data1)[0],6);
+        int indexFive = HexUtils.getBit(HexUtils.hexStringToBytes(data1)[0],5);
         if(indexSix == 0 && indexFive ==0){
             return true;
         }

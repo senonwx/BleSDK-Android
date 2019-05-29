@@ -3,7 +3,6 @@ package com.txwk.totalblesdk_android.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.txwk.totalblesdk_android.BuildConfig;
-import java.util.HashMap;
 import java.util.Map;
 
 /**

@@ -8,15 +8,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.txwk.totalblesdk_android.adapter.RecycleHolder;
 import com.txwk.totalblesdk_android.adapter.RecyclerAdapter;
 import com.txwk.totalblesdk_android.bean.UrineDetail;
@@ -24,31 +20,25 @@ import com.txwk.totalblesdk_android.bean.UrineIsBind;
 import com.txwk.totalblesdk_android.util.BleUrineRoutinUtils;
 import com.txwk.totalblesdk_android.util.LogUtils;
 import com.txwk.totalblesdk_android.util.OkhttpUtils;
-import com.txwk.totalblesdk_android.util.PreferenceTool;
 import com.txwk.totalblesdk_android.util.ToastUtils;
 import com.zhouwei.mzbanner.MZBannerView;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import io.reactivex.Observable;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
 
+/**
+ * 尿常规
+ */
 public class BleUrineRoutineActivity extends BaseActivity {
     private static final String TAG = "BleUrineRoutineActivity";
     private RecyclerView recyclerView;
@@ -150,6 +140,9 @@ public class BleUrineRoutineActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 拍照
+     */
     private void takePhoto() {
         String state = Environment.getExternalStorageState();
         /*判断是否有SD卡*/
@@ -162,7 +155,7 @@ public class BleUrineRoutineActivity extends BaseActivity {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                     imgUriOri = Uri.fromFile(file);
                 } else {
-                    //改变Uri  com.txwk.familydoctor.fileProvider注意和xml中的一致
+                    //改变Uri
                     imgUriOri = FileProvider.getUriForFile(this, "com.txwk.totalblesdk_android.fileprovider", file);
                 }
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imgUriOri);
@@ -215,19 +208,19 @@ public class BleUrineRoutineActivity extends BaseActivity {
             return false;
         }
     });
+
+    /**
+     * 上传照片分析结果 获取结果id
+     * 根据所选图片大小及网速 可能上传时间有快有慢
+     *
+     * @param file
+     */
     private void uploadImg(File file) {
         addSweetDialog("正在上传图片");
         long time = System.currentTimeMillis() / 1000;
         //表单
         RequestBody photoRequestBody = RequestBody.create(MediaType.parse("image/png"), file);
         MultipartBody.Part photo = MultipartBody.Part.createFormData("file", file.getName(), photoRequestBody);
-        //参数
-//        RequestBody usertokenb = RequestBody.create(MediaType.parse("text/plain"), userToken);
-//        RequestBody atimeb = RequestBody.create(MediaType.parse("text/plain"), time+"");
-//        RequestBody checkb = RequestBody.create(MediaType.parse("text/plain"), CodeUtils.getCheck(time,userToken));
-//        RequestBody project_idb = RequestBody.create(MediaType.parse("text/plain"), "1");
-        //project_id   1:尿常规11项  2：尿常规14项
-//        ServerUtils.getNiaoDaiFuApi().uploadImg(photo,usertokenb,atimeb,checkb,project_idb)
 
         MultipartBody.Builder mb = new MultipartBody.Builder().setType(MultipartBody.FORM);
         mb.addFormDataPart("usertoken",userToken);
@@ -270,6 +263,10 @@ public class BleUrineRoutineActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 根据id 获取详细的分析结果
+     * @param record_id
+     */
     private void getDetails(int record_id) {
         addSweetDialog("正在分析");
         long time = System.currentTimeMillis() / 1000;

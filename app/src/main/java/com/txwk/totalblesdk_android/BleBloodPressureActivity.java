@@ -11,8 +11,8 @@ import com.clj.fastble.callback.BleWriteCallback;
 import com.clj.fastble.data.BleDevice;
 import com.clj.fastble.exception.BleException;
 import com.clj.fastble.scan.BleScanRuleConfig;
-import com.clj.fastble.utils.HexUtil;
 import com.txwk.totalblesdk_android.util.BleBloodPressureConversion;
+import com.txwk.totalblesdk_android.util.HexUtils;
 import com.txwk.totalblesdk_android.util.LogUtils;
 import com.txwk.totalblesdk_android.util.PreferenceTool;
 import com.txwk.totalblesdk_android.util.ToastUtils;
@@ -25,7 +25,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 血压
+ * 血压计
  */
 public class BleBloodPressureActivity extends BaseActivity {
     private static final String TAG = "BleBloodPressureActivit";
@@ -161,7 +161,7 @@ public class BleBloodPressureActivity extends BaseActivity {
                 bind_tv.setText("设备已绑定");
 
                 //可以延迟500ms左右打开通知或写入的操作
-                bleWrite(HexUtil.hexStringToBytes(BleBloodPressureConversion.getSendHex(0)),
+                bleWrite(HexUtils.hexStringToBytes(BleBloodPressureConversion.getSendHex(0)),
                         bledevic, uuid_service, uuid_characteristic_write);
                 Observable.timer(500, TimeUnit.MILLISECONDS)
                         .subscribeOn(Schedulers.io())
@@ -176,7 +176,7 @@ public class BleBloodPressureActivity extends BaseActivity {
                         .subscribe(new Consumer<Long>() {
                             @Override
                             public void accept(Long aLong) {
-                                bleWrite(HexUtil.hexStringToBytes(BleBloodPressureConversion.getSendHex(1)),
+                                bleWrite(HexUtils.hexStringToBytes(BleBloodPressureConversion.getSendHex(1)),
                                         bleDevice, uuid_service, uuid_characteristic_write);
                             }
                         });
@@ -267,7 +267,7 @@ public class BleBloodPressureActivity extends BaseActivity {
         byte index2 = data[2];
         if (index2 != 3) return;//只获取结果包
         //验证数据包
-        if(!BleBloodPressureConversion.isBloodPreTrue(Arrays.asList(HexUtil.formatHexString(data,true).split(" ")))){
+        if(!BleBloodPressureConversion.isBloodPreTrue(Arrays.asList(HexUtils.formatHexString(data,true).split(" ")))){
             LogUtils.e("不正确的格式"+data.toString());
             return;
         }
@@ -277,10 +277,10 @@ public class BleBloodPressureActivity extends BaseActivity {
         byte index11 = data[11];//舒张压
         byte index12 = data[12];//心率
 
-        mHighValue = Integer.parseInt(HexUtil.encodeHexStr(new byte[]{index9}), 16)+
-                Integer.parseInt(HexUtil.encodeHexStr(new byte[]{index10}), 16) + "";
-        mmLowValue = Integer.parseInt(HexUtil.encodeHexStr(new byte[]{index11}), 16) + "";
-        mHeratValue = Integer.parseInt(HexUtil.encodeHexStr(new byte[]{index12}), 16) + "";
+        mHighValue = Integer.parseInt(HexUtils.encodeHexStr(new byte[]{index9}), 16)+
+                Integer.parseInt(HexUtils.encodeHexStr(new byte[]{index10}), 16) + "";
+        mmLowValue = Integer.parseInt(HexUtils.encodeHexStr(new byte[]{index11}), 16) + "";
+        mHeratValue = Integer.parseInt(HexUtils.encodeHexStr(new byte[]{index12}), 16) + "";
         descripte_tv.setText("收缩压:"+mHighValue+"\t舒张压:"+mmLowValue+"\t心率"+mHeratValue);
 
 
@@ -293,6 +293,7 @@ public class BleBloodPressureActivity extends BaseActivity {
     //中间数据
     private byte[] data_temp = new byte[]{};
     private int length = 8;
+
     private void getData(byte[] data) {
         if (null == data) return;
         if ((data.length > 2 && data[2] == 3) || (data_temp.length > 2 && data_temp[2] == 3)) {
@@ -415,14 +416,14 @@ public class BleBloodPressureActivity extends BaseActivity {
                         case 14:
                             try {
                                 //验证数据包
-                                if(!BleBloodPressureConversion.isBloodPreTrue(Arrays.asList(HexUtil.formatHexString(data_temp,true).split(" ")))){
+                                if(!BleBloodPressureConversion.isBloodPreTrue(Arrays.asList(HexUtils.formatHexString(data_temp,true).split(" ")))){
                                     LogUtils.e("不正确的格式"+data.toString());
                                     return;
                                 }
-                                mHighValue = Integer.parseInt(HexUtil.encodeHexStr(new byte[]{data_temp[10]}), 16)+
-                                        Integer.parseInt(HexUtil.encodeHexStr(new byte[]{data_temp[9]}), 16) + "";
-                                mmLowValue = String.valueOf(Integer.valueOf(HexUtil.encodeHexStr(new byte[]{data_temp[11]}), 16));//低压
-                                mHeratValue = String.valueOf(Integer.valueOf(HexUtil.encodeHexStr(new byte[]{data_temp[12]}), 16));//心率
+                                mHighValue = Integer.parseInt(HexUtils.encodeHexStr(new byte[]{data_temp[10]}), 16)+
+                                        Integer.parseInt(HexUtils.encodeHexStr(new byte[]{data_temp[9]}), 16) + "";
+                                mmLowValue = String.valueOf(Integer.valueOf(HexUtils.encodeHexStr(new byte[]{data_temp[11]}), 16));//低压
+                                mHeratValue = String.valueOf(Integer.valueOf(HexUtils.encodeHexStr(new byte[]{data_temp[12]}), 16));//心率
                                 descripte_tv.setText("收缩压:"+mHighValue+"\t舒张压:"+mmLowValue+"\t心率"+mHeratValue);
 
                             } catch (Exception e) {
@@ -456,15 +457,15 @@ public class BleBloodPressureActivity extends BaseActivity {
                         case 14:
                             try {
                                 //验证数据包
-                                if(!BleBloodPressureConversion.isBloodPreTrue(Arrays.asList(HexUtil.formatHexString(data_temp,true).split(" ")))){
+                                if(!BleBloodPressureConversion.isBloodPreTrue(Arrays.asList(HexUtils.formatHexString(data_temp,true).split(" ")))){
                                     LogUtils.e("不正确的格式"+data.toString());
                                     return;
                                 }
 
-                                mHighValue = Integer.parseInt(HexUtil.encodeHexStr(new byte[]{data_temp[10]}), 16)+
-                                        Integer.parseInt(HexUtil.encodeHexStr(new byte[]{data_temp[9]}), 16) + "";
-                                mmLowValue = String.valueOf(Integer.valueOf(HexUtil.encodeHexStr(new byte[]{data_temp[11]}), 16));//低压
-                                mHeratValue = String.valueOf(Integer.valueOf(HexUtil.encodeHexStr(new byte[]{data_temp[12]}), 16));//心率
+                                mHighValue = Integer.parseInt(HexUtils.encodeHexStr(new byte[]{data_temp[10]}), 16)+
+                                        Integer.parseInt(HexUtils.encodeHexStr(new byte[]{data_temp[9]}), 16) + "";
+                                mmLowValue = String.valueOf(Integer.valueOf(HexUtils.encodeHexStr(new byte[]{data_temp[11]}), 16));//低压
+                                mHeratValue = String.valueOf(Integer.valueOf(HexUtils.encodeHexStr(new byte[]{data_temp[12]}), 16));//心率
                                 descripte_tv.setText("收缩压:"+mHighValue+"\t舒张压:"+mmLowValue+"\t心率"+mHeratValue);
 
                             } catch (Exception e) {
@@ -505,7 +506,7 @@ public class BleBloodPressureActivity extends BaseActivity {
     private void setPreValue(byte[] data) {
         byte[] valueArr = {data[6], data[5]};
         try {
-            String strValue = String.valueOf(Integer.valueOf(HexUtil.encodeHexStr(valueArr), 16));//血压 6+5 在转换成10进制
+            String strValue = String.valueOf(Integer.valueOf(HexUtils.encodeHexStr(valueArr), 16));//血压 6+5 在转换成10进制
             descripte_tv.setText(String.format("过程值:%s", strValue));
         } catch (Exception e) {
             e.printStackTrace();

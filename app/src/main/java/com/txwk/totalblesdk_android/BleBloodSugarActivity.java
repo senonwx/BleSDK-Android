@@ -2,40 +2,32 @@ package com.txwk.totalblesdk_android;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothGatt;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import com.clj.fastble.BleManager;
-import com.clj.fastble.callback.BleIndicateCallback;
 import com.clj.fastble.callback.BleNotifyCallback;
 import com.clj.fastble.callback.BleScanAndConnectCallback;
 import com.clj.fastble.callback.BleWriteCallback;
 import com.clj.fastble.data.BleDevice;
 import com.clj.fastble.exception.BleException;
 import com.clj.fastble.scan.BleScanRuleConfig;
-import com.clj.fastble.utils.HexUtil;
 import com.txwk.totalblesdk_android.util.BleBloodSugarConversion;
-import com.txwk.totalblesdk_android.util.BleWeightConversion;
 import com.txwk.totalblesdk_android.util.HexUtils;
 import com.txwk.totalblesdk_android.util.LogUtils;
 import com.txwk.totalblesdk_android.util.PreferenceTool;
 import com.txwk.totalblesdk_android.util.ToastUtils;
 import com.zhouwei.mzbanner.MZBannerView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 血糖尿酸
+ * 血糖尿酸仪
  */
 public class BleBloodSugarActivity extends BaseActivity {
     private static final String TAG = "BleBloodSugarActivity";
@@ -175,7 +167,7 @@ public class BleBloodSugarActivity extends BaseActivity {
                 bind_tv.setText("设备已绑定");
 
                 //可以延迟500ms左右打开通知或写入操作
-                bleWrite(HexUtil.hexStringToBytes(BleBloodSugarConversion.getSendHex01()),
+                bleWrite(HexUtils.hexStringToBytes(BleBloodSugarConversion.getSendHex01()),
                         bledevic, uuid_service, uuid_characteristic_write);
                 Observable.timer(1000, TimeUnit.MILLISECONDS)
                         .subscribeOn(Schedulers.io())
@@ -253,9 +245,8 @@ public class BleBloodSugarActivity extends BaseActivity {
                             connetstatus_tv.setText("血糖尿酸仪已连接");
                         }
                         LogUtils.e("收到data==" + Arrays.toString(data));
-                        LogUtils.e(HexUtil.formatHexString(data, true));
 
-                        analysisData(HexUtil.formatHexString(data, true));
+                        analysisData(HexUtils.formatHexString(data, true));
 
                     }
                 });

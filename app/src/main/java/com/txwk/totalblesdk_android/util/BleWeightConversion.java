@@ -1,6 +1,5 @@
 package com.txwk.totalblesdk_android.util;
 
-import com.clj.fastble.utils.HexUtil;
 import java.util.List;
 
 /**
@@ -74,7 +73,7 @@ public class BleWeightConversion {
 
         LogUtils.e("resistance1= " + resistance1+"   resistance2= "+resistance2);
         //消息体解析
-        byte byte15 = HexUtil.hexStringToBytes(tempArrays.get(15))[0];
+        byte byte15 = HexUtils.hexStringToBytes(tempArrays.get(15))[0];
         int bit4 = HexUtils.getBit(byte15,4);
         int bit3 = HexUtils.getBit(byte15,3);
         int bit2 = HexUtils.getBit(byte15,2);

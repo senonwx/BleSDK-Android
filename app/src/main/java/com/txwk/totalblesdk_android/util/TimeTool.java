@@ -15,7 +15,6 @@ import static com.txwk.totalblesdk_android.util.ConstTool.MIN;
 import static com.txwk.totalblesdk_android.util.ConstTool.MSEC;
 import static com.txwk.totalblesdk_android.util.ConstTool.SEC;
 
-
 /**
  * 时间相关工具类
  */

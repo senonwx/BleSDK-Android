@@ -1,10 +1,9 @@
 package com.txwk.totalblesdk_android.util;
 
-import com.clj.fastble.utils.HexUtil;
 import java.util.List;
 
 /**
- * 血压jiance
+ * 血压检测
  */
 public class BleBloodPressureConversion {
 
@@ -86,8 +85,8 @@ public class BleBloodPressureConversion {
             byte[] data = new byte[]{(byte) index0, (byte) index1, (byte) index2, (byte) index3,
                     (byte) index4, (byte) index5, (byte) index6, (byte) index7, (byte) index8};
 
-            String hexSend = HexUtil.encodeHexStr(data);
-            String hexIndex9 = HexUtil.encodeHexStr(new byte[]{(byte) index9});
+            String hexSend = HexUtils.encodeHexStr(data);
+            String hexIndex9 = HexUtils.encodeHexStr(new byte[]{(byte) index9});
             int len = hexIndex9.length();
             String i9 = hexIndex9.substring(len - 2, len);
             return String.format("%s%s", hexSend, i9).toUpperCase();
@@ -124,7 +123,7 @@ public class BleBloodPressureConversion {
         byte[] data = new byte[]{(byte) index0, (byte) index1, (byte) index2, (byte) index3,
                 (byte) index4, (byte) index5};
 
-        String hexSend = HexUtil.encodeHexStr(data);
+        String hexSend = HexUtils.encodeHexStr(data);
         return hexSend.toUpperCase();
     }
 

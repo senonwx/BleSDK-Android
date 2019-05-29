@@ -2,34 +2,26 @@ package com.txwk.totalblesdk_android;
 
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothGatt;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import com.clj.fastble.BleManager;
-import com.clj.fastble.callback.BleIndicateCallback;
 import com.clj.fastble.callback.BleNotifyCallback;
 import com.clj.fastble.callback.BleScanAndConnectCallback;
 import com.clj.fastble.callback.BleWriteCallback;
 import com.clj.fastble.data.BleDevice;
 import com.clj.fastble.exception.BleException;
 import com.clj.fastble.scan.BleScanRuleConfig;
-import com.clj.fastble.utils.HexUtil;
 import com.txwk.totalblesdk_android.util.BleHeartOxygenConversion;
-import com.txwk.totalblesdk_android.util.BleWeightConversion;
 import com.txwk.totalblesdk_android.util.HexUtils;
 import com.txwk.totalblesdk_android.util.LogUtils;
 import com.txwk.totalblesdk_android.util.PreferenceTool;
 import com.txwk.totalblesdk_android.util.ToastUtils;
 import com.zhouwei.mzbanner.MZBannerView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -52,7 +44,7 @@ public class BleHeartrateOxygenActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_ble_weight;
+        return R.layout.activity_ble_heartrate_oxygen;
     }
 
     @Override
@@ -176,7 +168,7 @@ public class BleHeartrateOxygenActivity extends BaseActivity {
                             @Override
                             public void accept(Long aLong) {
                                 if(isConect){
-                                    bleWrite(HexUtil.hexStringToBytes("80"), bleDevice, uuid_service, uuid_characteristic_write);
+                                    bleWrite(HexUtils.hexStringToBytes("80"), bleDevice, uuid_service, uuid_characteristic_write);
                                 }
                             }
                         });
@@ -262,9 +254,13 @@ public class BleHeartrateOxygenActivity extends BaseActivity {
                 });
     }
 
-
+    //中间数据
     private List<String> tempArrays = new ArrayList<>();
-    //解析数据
+
+    /**
+     * 解析数据
+     * @param formatHexString
+     */
     private void analysisData(String formatHexString) {
         String[] strings = formatHexString.split(" ");
         tempArrays.clear();

@@ -1,7 +1,6 @@
 package com.txwk.totalblesdk_android.util;
 
 import com.txwk.totalblesdk_android.BuildConfig;
-
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;

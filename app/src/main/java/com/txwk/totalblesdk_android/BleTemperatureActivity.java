@@ -1,34 +1,27 @@
 package com.txwk.totalblesdk_android;
 
 import android.bluetooth.BluetoothGatt;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import com.clj.fastble.BleManager;
-import com.clj.fastble.callback.BleIndicateCallback;
 import com.clj.fastble.callback.BleNotifyCallback;
 import com.clj.fastble.callback.BleScanAndConnectCallback;
 import com.clj.fastble.data.BleDevice;
 import com.clj.fastble.exception.BleException;
 import com.clj.fastble.scan.BleScanRuleConfig;
-import com.clj.fastble.utils.HexUtil;
 import com.txwk.totalblesdk_android.util.BleTemperatureConversion;
-import com.txwk.totalblesdk_android.util.BleWeightConversion;
 import com.txwk.totalblesdk_android.util.HexUtils;
 import com.txwk.totalblesdk_android.util.LogUtils;
 import com.txwk.totalblesdk_android.util.PreferenceTool;
 import com.txwk.totalblesdk_android.util.ToastUtils;
 import com.zhouwei.mzbanner.MZBannerView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * 体温计
+ * 体温枪
  */
 public class BleTemperatureActivity extends BaseActivity {
     private static final String TAG = "BleTemperatureActivity";
@@ -176,7 +169,12 @@ public class BleTemperatureActivity extends BaseActivity {
         });
     }
 
-    //开始接收蓝牙通知
+    /**
+     * 开始接收蓝牙通知
+     * @param bleDevice
+     * @param uuid_service
+     * @param uuid_characteristic_notify
+     */
     private void bleNotify(BleDevice bleDevice, String uuid_service, String uuid_characteristic_notify) {
         BleManager.getInstance().notify(
                 bleDevice,
@@ -205,8 +203,13 @@ public class BleTemperatureActivity extends BaseActivity {
                 });
     }
 
+    //中间数据
     private List<String> tempArrays = new ArrayList<>();
-    //解析数据
+
+    /**
+     * 解析数据
+     * @param content
+     */
     private void analysisData(String content) {
         String[] strings = content.split(" ");
         LogUtils.e(content);

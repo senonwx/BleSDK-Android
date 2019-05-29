@@ -1,7 +1,5 @@
 package com.txwk.totalblesdk_android.util;
 
-import com.clj.fastble.utils.HexUtil;
-
 import java.util.List;
 
 /**
@@ -41,8 +39,8 @@ public class BleBloodSugarConversion {
 
         byte[] data0_9 = new byte[]{(byte) index0, (byte) index1,(byte) index2,(byte) index3, (byte) index4,
                 (byte) index5, (byte) index6, (byte) index7, (byte) index8,(byte) index9};
-        String hexSend0_9 = HexUtil.encodeHexStr(data0_9);
-        String hexIndex10 = HexUtil.encodeHexStr(new byte[]{(byte) index10});
+        String hexSend0_9 = HexUtils.encodeHexStr(data0_9);
+        String hexIndex10 = HexUtils.encodeHexStr(new byte[]{(byte) index10});
         int len = hexIndex10.length();
         String i10 = hexIndex10.substring(len - 2, len);
         return String.format("%s%s",hexSend0_9,i10).toUpperCase();
@@ -70,8 +68,8 @@ public class BleBloodSugarConversion {
 
         byte[] data0_7 = new byte[]{(byte) index0, (byte) index1,(byte) index2,(byte) index3, (byte) index4,
                 (byte) index5, (byte) index6, (byte) index7};
-        String hexSend0_7 = HexUtil.encodeHexStr(data0_7);
-        String hexIndex8 = HexUtil.encodeHexStr(new byte[]{(byte) index8});
+        String hexSend0_7 = HexUtils.encodeHexStr(data0_7);
+        String hexIndex8 = HexUtils.encodeHexStr(new byte[]{(byte) index8});
         int len = hexIndex8.length();
         String i8 = hexIndex8.substring(len - 2, len);
         return String.format("%s%s",hexSend0_7,i8).toUpperCase();

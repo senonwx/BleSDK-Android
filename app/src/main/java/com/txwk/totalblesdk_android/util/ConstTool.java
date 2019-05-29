@@ -1,7 +1,6 @@
 package com.txwk.totalblesdk_android.util;
 
 /**
- * Created by zhudewei on 2016/1/24.
  * 常量工具类
  */
 public class ConstTool {

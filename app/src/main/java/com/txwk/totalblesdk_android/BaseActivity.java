@@ -1,6 +1,5 @@
 package com.txwk.totalblesdk_android;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 import com.zhouwei.mzbanner.holder.MZViewHolder;
 import java.util.List;
-
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
@@ -108,6 +106,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         isDestory = true;
     }
 
+    //显示dialog
     public void addSweetDialog(String content) {
         if(sweetAlertDialog != null && sweetAlertDialog.isShowing()){
             sweetAlertDialog.dismiss();
@@ -119,6 +118,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    //取消dialog
     public void dissmissDialog() {
         if (sweetAlertDialog != null) {
             sweetAlertDialog.dismiss();

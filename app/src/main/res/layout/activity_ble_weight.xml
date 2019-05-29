@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="心率血氧仪未连接"
+            android:text="体重秤未连接"
             android:textColor="@color/login_"
             android:textSize="16dp" />
         <TextView
